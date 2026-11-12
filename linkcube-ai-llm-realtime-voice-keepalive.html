@@ -46,7 +46,7 @@
       <section style="font-size:15px; line-height:1.85; color:#d1d5db;">
         
         <h2 style="font-size:19px; color:#fff; margin:24px 0 10px; font-weight:700;">一、实时语音与流式大模型通信的协议要求</h2>
-        <p>以OpenAI GPT-4o Realtime API为代表的实时语音交互，采用WebSocket全双工长连接协议承载双向音频流传输。用户说话的同时，服务端以极高采样率实时生成音频并流式返回，端到端网络往返延迟必须严控在200毫秒内，方能保证宛如真人的自然对话节奏。不少开发前沿AI应用的工程师在选配<a href="https://dajichang.mom/" target="_blank" style="color:#34d399; font-weight:700; text-decoration:underline;">国际高速网络通道</a>时，首要关注点就是链路的双向实时RTT稳定性与抗抖动能力，防止网络微小抖动引发语音语调变形。</p>
+        <p>以OpenAI GPT-4o Realtime API为代表的实时语音交互，采用WebSocket全双工长连接协议承载双向音频流传输。用户说话的同时，服务端以极高采样率实时生成音频并流式返回，端到端网络往返延迟必须严控在200毫秒内，方能保证宛如真人的自然对话节奏。不少开发前沿AI应用的工程师在选配<a href="https://dajichang.mom/" target="_blank" style="color:#34d399; font-weight:700; text-decoration:underline;">低抖动全双工链路</a>时，首要关注点就是链路的双向实时RTT稳定性与抗抖动能力，防止网络微小抖动引发语音语调变形。</p>
         <h2 style="font-size:19px; color:#fff; margin:24px 0 10px; font-weight:700;">二、防止长时间长文本推理导致的连接超时重置</h2>
         <p>在处理复杂推理、代码深度重构或长篇报告生成时，大语言模型往往需要耗费数十秒乃至数分钟进行内部思维链演算，期间极少产生上行数据包。在复杂的跨国公网路径中，中间NAT网关若在此静默期内提前判定连接空闲并回收端口映射，会导致整个会话发生TCP Reset中断。通过在本地客户端底层调优TCP KeepAlive参数并开启细粒度应用层心跳探针，能够有效防范意外断连。</p>
         <h2 style="font-size:19px; color:#fff; margin:24px 0 10px; font-weight:700;">三、首字延迟(TTFT)的网络优化关键实务</h2>
